@@ -35,12 +35,13 @@ class App extends Component {
 
       //If you guess correctly
     } else {
+      console.log(this.state.ClickedPics, currentRoll)
       this.setState(
         {
           Pics: this.state.Pics.sort((a, b) => {
             return 0.5 - Math.random();
           }),
-          clickedRoll: this.state.clickedPics.concat(currentRoll),
+          ClickedPics: [currentRoll, ...this.state.ClickedPics],
           currentScore: this.state.score + 1
         },
 
@@ -60,7 +61,7 @@ class App extends Component {
       );
     }
   };
-        // Map over this.state.friends and render a SushiCard component for each friend object
+        // Map over this.state.friends and render a SushiCard component for each sushi object
         render() {
           return(
       <Wrapper>
