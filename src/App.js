@@ -9,7 +9,7 @@ class App extends Component {
 
   state = {
     topScore: 0,
-    currentScore: 0,
+    score: 0,
     Pics,
     ClickedPics: []
   };
@@ -19,7 +19,6 @@ class App extends Component {
     const currentRoll = event.target.alt;
     const clickedRoll =
       this.state.ClickedPics.indexOf(currentRoll) > -1;
-      console.log(clickedRoll)
     
     // if a previously clicked sushi is chosen
     if (clickedRoll) {
@@ -27,7 +26,7 @@ class App extends Component {
         Pics: this.state.Pics.sort((a, b) => {
           return 0.5 - Math.random();
         }),
-        clickedRoll: [],
+        ClickedPics: [],
         score: 0
       });
       alert("You lose. Play again?");
@@ -35,25 +34,26 @@ class App extends Component {
 
       //If you guess correctly
     } else {
-      console.log(this.state.ClickedPics, currentRoll)
       this.setState(
         {
           Pics: this.state.Pics.sort((a, b) => {
             return 0.5 - Math.random();
           }),
           ClickedPics: [currentRoll, ...this.state.ClickedPics],
-          currentScore: this.state.score + 1
+          score: this.state.score + 1
         },
+        console.log(this.state.score),
+        console.log(this.state.ClickedPics, currentRoll),
 
         //if you get all of them
         () => {
-          if (this.state.score === 12) {
+          if (this.state.score === 11) {
             alert("Congratulations, you got them all!");
             this.setState({
               Pics: this.state.Pics.sort((a, b) => {
                 return 0.5 - Math.random();
               }),
-              clickedRoll: [],
+              ClickedPics: [],
               score: 0
             });
           }
